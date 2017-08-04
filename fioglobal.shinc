@@ -1,0 +1,19 @@
+# BEGIN - FIOGLOBAL.shinc
+# USES Global var: runtime, ramp, iod, rwmixread, devsize
+#
+cat <<EOF1 > "${fname}"
+[global]
+group_reporting=1
+time_based=1
+runtime=${runtime}
+clocksource=gettimeofday
+ramp_time=${ramp}
+direct=1
+bs=${bs}
+iodepth=${iod}
+rw=${oper}
+size=${devsize}
+EOF1
+
+# END - FIOGLOBAL.shinc
+

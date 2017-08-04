@@ -1,0 +1,81 @@
+###############################################################
+# BEGIN - vars.shinc
+#
+#-------------------
+# Device Naming vars
+# ==================
+#
+# Since bash doesn't support multidim arrays, we use three arrays
+#pool_arr=("krbdTest" "librbdTest" "iscsiTest")
+#type_arr=("krbd" "librbd" "iscsi")
+#ioeng_arr=("libaio" "rbd" "libaio")    # fio jobfile 'ioengine' setting
+pool_arr=("krbdTest" "librbdTest")
+type_arr=("krbd" "librbd")
+ioeng_arr=("libaio" "rbd")    # fio jobfile 'ioengine' setting
+
+librbd_poolname="librbdTest"  # Ensure this matches with pool_arr entry!
+
+devcnt=10                     # number of devices per client
+
+# KRBD Device naming vars
+basename_krbd="/dev/rbd"
+krbd_startindex=0           # first mapped: /dev/rbd0
+krbd_endindex=59            # last mapped:  /dev/rbd59
+
+# LIBRBD Device naming vars
+basename_librbd="${librbd_poolname}-"          # variable value set above
+librbd_startindex=1         # first in pool: librbdTest-1
+librbd_endindex=60          # last in pool:  librbdTest-60
+
+# ISCSI Device naming vars
+basename_iscsi="/dev/mapper/"
+# Multipath device names used for iscsi testing
+iscsidev_list="/dev/mapper/mpathaa /dev/mapper/mpathab /dev/mapper/mpathac
+  /dev/mapper/mpathad /dev/mapper/mpathae /dev/mapper/mpathaf
+  /dev/mapper/mpathag /dev/mapper/mpathah /dev/mapper/mpathai
+  /dev/mapper/mpathaj /dev/mapper/mpathak /dev/mapper/mpathal
+  /dev/mapper/mpatham /dev/mapper/mpathan /dev/mapper/mpathu
+  /dev/mapper/mpathv /dev/mapper/mpathw /dev/mapper/mpathx
+  /dev/mapper/mpathy /dev/mapper/mpathz"
+
+# BLOCK Device naming vars
+basename_block="/dev/"
+blockdev_list="sdd sde"
+
+# FILESYSTEM Device naming vars
+basename_fs="/mnt/"
+fsdev_list="test test1"
+
+#------------------
+# Hosts and Clients
+# =================
+cephServer="gprfc092"
+pdsh_clients="gprfc[093-095]"
+#pdsh_clients="gprfc[093]"
+client_list="gprfc093 gprfc094 gprfc095"
+#client_list="gprfc093"
+
+#----------------------------------------------------
+# FIO jobfile values - for loop conditions (in order)
+# ==================
+#operation_list="read randread randwrite write"
+operation_list="read write"
+#operation_list="read randread"
+#blocksize_list="4k 64k 1024k 4096k 16384k"
+blocksize_list="4k 64k 1024k"
+iodepth_list="8"
+
+#----------------------
+# FIO - GLOBAL section settings
+# ====================
+runtime=300
+ramp=15
+devsize=80g
+#
+#dir=/mnt/ceph/fio        # currently not used
+#log_avg=60000             # currently not used
+#log_hist=60000            # currently not used
+
+# END - vars.shinc
+###############################################################
+

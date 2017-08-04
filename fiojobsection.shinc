@@ -1,0 +1,12 @@
+# BEGIN - FIOJOBSECTION.shinc
+# USES Global var: ioengine
+#   gen_jobfile function sets $jobstring and $string, then includes this
+#
+cat <<EOF2 >> "${jobfile}"
+
+[${jobstr}]
+ioengine=${ioengine}
+${string}
+EOF2
+
+# END - FIOJOBSECTION.shinc
