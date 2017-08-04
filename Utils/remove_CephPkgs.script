@@ -1,0 +1,37 @@
+#!/bin/bash
+# USAGE:
+#   cat /root/FIOjobfiles/Utils/remove_CephPkgs.script | ssh gprfc093
+
+# ALL:  ceph-common; libcephfs1, python-ceph
+# ADMIN: ceph-ansible; ceph-iscsi-ansible
+# GATEWAYS: ceph-iscsi-cli; ceph-iscsi-config; ceph-iscsi-tools
+declare -a pkglist=(
+                    "ceph-ansible"
+                    "ceph-iscsi-ansible"
+                    "ceph-iscsi-cli" 
+                    "ceph-iscsi-config"
+                    "ceph-iscsi-tools"
+                    "ceph-common"
+                    "ceph-base"
+                    "ceph-osd"
+                    "ceph-selinux"
+                    "libcephfs1"
+                    "python-cephfs"
+                    "librbd1"
+                    "rbd-mirror"
+                    "lrbd"
+                    "libtcmu"
+                    "tcmu-runner"
+)
+
+echo "Listing installed ceph packages"
+yum list installed | grep ceph
+
+for pkg in "${pkglist[@]}"; do
+    yum --assumeyes remove $pkg
+done
+
+echo "package remove completed"
+echo "Listing installed ceph packages"
+yum list installed | grep ceph
+

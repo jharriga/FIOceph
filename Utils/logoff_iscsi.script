@@ -1,0 +1,18 @@
+#!/bin/bash
+
+gw1ip="172.245.1.1" 
+gw2ip="172.245.1.4" 
+
+#iscsiadm -m node -p ${gw1ip} -I p3p1 -U all
+#iscsiadm -m node -p ${gw2ip} -I p3p1 -U all
+#iscsiadm -m discovery -t st -p ${gw1ip} -I p3p1 -o delete
+#iscsiadm -m discovery -t st -p ${gw2ip} -I p3p1 -o delete
+
+iscsiadm -m node -p ${gw1ip} -U all
+iscsiadm -m node -p ${gw2ip} -U all
+iscsiadm -m node -p ${gw1ip} -o delete
+iscsiadm -m node -p ${gw2ip} -o delete 
+iscsiadm -m discoverydb -t st -p ${gw1ip} -o delete
+iscsiadm -m discoverydb -t st -p ${gw2ip} -o delete
+iscsiadm -m session
+

@@ -1,0 +1,15 @@
+test if file exists
+how to handle multiple pool results in one dir
+
+./RESULTS/20161111-1715_rbdblock_DEVCNT5
+
+----------------------------------------------
+FIO params: rw=$Z iodepth=$X ioengine=$Y
+  devs=$fnames
+----------
+$basename: bw=$bw1  latAvg=$lat stdev=$stdev
+$basename: bw=$bw1  latAvg=$lat stdev=$stdev
+$basename: bw=$bw1  latAvg=$lat stdev=$stdev
+TOTALS     bw=$totbw     latAvg=$latavg
+----------------------------------------------
+
